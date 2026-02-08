@@ -5,6 +5,11 @@ provider "aws" {
   region = var.aws_region
 }
 
+provider "aws" {
+  alias  = "useast1"
+  region = "us-east-1"
+}
+
 terraform {
   required_version = ">= 1.5.0"
 
@@ -12,6 +17,15 @@ terraform {
     aws = {
       source  = "hashicorp/aws"
       version = ">= 5.0"
+      # configuration_aliases = [ aws.useast1 ]
     }
+  }
+}
+
+terraform {
+  backend "s3" {
+    bucket = "japanbos"
+    key    = "japan/ap-northeast-1/terraform.tfstate"
+    region = "ap-northeast-1"
   }
 }

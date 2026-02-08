@@ -7,43 +7,43 @@ variable "aws_account_id" {
 variable "aws_region" {
   description = "AWS Region for the bos fleet to patrol."
   type        = string
-  default     = "us-east-1"
+  default     = "ap-northeast-1"
 }
 
 variable "project_name" {
   description = "Prefix for naming. Students should change from 'bos' to their own."
   type        = string
-  default     = "bos"
+  default     = "edo"
 }
 
 variable "vpc_cidr" {
   description = "VPC CIDR (use 10.x.x.x/xx as instructed)."
   type        = string
-  default     = "10.26.0.0/16" # TODO: student supplies
+  default     = "10.81.0.0/16" # TODO: student supplies
 }
 
 variable "public_subnet_cidrs" {
   description = "Public subnet CIDRs (use 10.x.x.x/xx)."
   type        = list(string)
-  default     = ["10.26.1.0/24", "10.26.2.0/24"] # TODO: student supplies
+  default     = ["10.81.1.0/24", "10.81.2.0/24", "10.81.3.0/24"] # TODO: student supplies
 }
 
 variable "private_subnet_cidrs" {
   description = "Private subnet CIDRs (use 10.x.x.x/xx)."
   type        = list(string)
-  default     = ["10.26.101.0/24", "10.26.102.0/24"] # TODO: student supplies
+  default     = ["10.81.101.0/24", "10.81.102.0/24", "10.81.103.0/24"] # TODO: student supplies
 }
 
 variable "azs" {
   description = "Availability Zones list (match count with subnets)."
   type        = list(string)
-  default     = ["us-east-1a", "us-east-1b"] # TODO: student supplies
+  default     = ["ap-northeast-1a", "ap-northeast-1c", "ap-northeast-1d"] # TODO: student supplies
 }
 
 variable "ec2_ami_id" {
   description = "AMI ID for the EC2 app host."
   type        = string
-  default     = "ami-068c0051b15cdb816" # TODO
+  default     = "ami-06cce67a5893f85f9" # TODO
 }
 
 variable "ec2_instance_type" {
@@ -186,4 +186,10 @@ variable "cloudfront_acm_cert_arn" {
   description = "ACM certificate ARN in us-east-1 for CloudFront (covers jshivbos.click and app.jshivbos.click)."
   type        = string
   default     = ""
+}
+
+### Lab 3
+variable "brazil_vpc_cidr" {
+  type    = string
+  default = "10.55.0.0/16"
 }

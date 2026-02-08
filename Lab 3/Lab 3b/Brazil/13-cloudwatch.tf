@@ -11,6 +11,7 @@ resource "aws_cloudwatch_log_group" "gru_log_group01" {
     Name = "${local.name_prefix}-log-group01"
   }
 }
+
 ############################################
 # Custom Metric + Alarm (Skeleton)
 ############################################
@@ -65,7 +66,7 @@ resource "aws_cloudwatch_metric_alarm" "gru_alb_5xx_alarm01" {
 ############################################
 
 # Explanation: Dashboards are your cockpit HUD — Chewbacca wants dials, not vibes.
-resource "aws_cloudwatch_dashboard" "bos_dashboard01" {
+resource "aws_cloudwatch_dashboard" "gru_dashboard01" {
   dashboard_name = "${var.project_name}-dashboard01"
 
   # TODO: students can expand widgets; this is a minimal workable skeleton
@@ -79,13 +80,13 @@ resource "aws_cloudwatch_dashboard" "bos_dashboard01" {
         height = 6
         properties = {
           metrics = [
-            ["AWS/ApplicationELB", "RequestCount", "LoadBalancer", aws_lb.bos_alb01.arn_suffix],
-            [".", "HTTPCode_ELB_5XX_Count", ".", aws_lb.bos_alb01.arn_suffix]
+            ["AWS/ApplicationELB", "RequestCount", "LoadBalancer", aws_lb.gru_alb01.arn_suffix],
+            [".", "HTTPCode_ELB_5XX_Count", ".", aws_lb.gru_alb01.arn_suffix]
           ]
           period = 300
           stat   = "Sum"
           region = var.aws_region
-          title  = "bos ALB: Requests + 5XX"
+          title  = "gru ALB: Requests + 5XX"
         }
       },
       {
@@ -96,12 +97,12 @@ resource "aws_cloudwatch_dashboard" "bos_dashboard01" {
         height = 6
         properties = {
           metrics = [
-            ["AWS/ApplicationELB", "TargetResponseTime", "LoadBalancer", aws_lb.bos_alb01.arn_suffix]
+            ["AWS/ApplicationELB", "TargetResponseTime", "LoadBalancer", aws_lb.gru_alb01.arn_suffix]
           ]
           period = 300
           stat   = "Average"
           region = var.aws_region
-          title  = "bos ALB: Target Response Time"
+          title  = "gru ALB: Target Response Time"
         }
       }
     ]

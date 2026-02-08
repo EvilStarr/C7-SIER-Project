@@ -14,13 +14,13 @@ resource "aws_iam_role" "gru_ec2_role01" {
   })
 }
 
-# IAM Policy Creation - Secure Policy for EC2 to read the secret
-resource "aws_iam_role_policy" "gru_ec2_secrets_access" {
-  name = "secrets-manager-gru-rds"
-  role = aws_iam_role.gru_ec2_role01.id
+ # IAM Policy Creation - Secure Policy for EC2 to read the secret
+ resource "aws_iam_role_policy" "gru_ec2_secrets_access" {
+   name = "secrets-manager-gru-rds"
+   role = aws_iam_role.gru_ec2_role01.id
 
-  policy = file("${path.module}/inline_policy.json")
-}
+   policy = file("${path.module}/1a_inline_policy.json")
+ }
 
 
 resource "aws_iam_role_policy_attachment" "gru_ec2_ssm_attach" {

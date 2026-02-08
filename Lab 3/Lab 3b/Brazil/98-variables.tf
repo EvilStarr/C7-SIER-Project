@@ -7,7 +7,7 @@ variable "aws_account_id" {
 variable "aws_region" {
   description = "AWS Region for the gru fleet to patrol."
   type        = string
-  default     = "us-east-1"
+  default     = "sa-east-1"
 }
 
 variable "project_name" {
@@ -19,31 +19,31 @@ variable "project_name" {
 variable "vpc_cidr" {
   description = "VPC CIDR (use 10.x.x.x/xx as instructed)."
   type        = string
-  default     = "10.26.0.0/16" # TODO: student supplies
+  default     = "10.55.0.0/16" # TODO: student supplies
 }
 
 variable "public_subnet_cidrs" {
   description = "Public subnet CIDRs (use 10.x.x.x/xx)."
   type        = list(string)
-  default     = ["10.26.1.0/24", "10.26.2.0/24"] # TODO: student supplies
+  default     = ["10.55.1.0/24", "10.55.2.0/24", "10.55.3.0/24"] # TODO: student supplies
 }
 
 variable "private_subnet_cidrs" {
   description = "Private subnet CIDRs (use 10.x.x.x/xx)."
   type        = list(string)
-  default     = ["10.26.101.0/24", "10.26.102.0/24"] # TODO: student supplies
+  default     = ["10.55.101.0/24", "10.55.102.0/24", "10.55.103.0/24"] # TODO: student supplies
 }
 
 variable "azs" {
   description = "Availability Zones list (match count with subnets)."
   type        = list(string)
-  default     = ["us-east-1a", "us-east-1b"] # TODO: student supplies
+  default     = ["sa-east-1a", "sa-east-1b", "sa-east-1c"] # TODO: student supplies
 }
 
 variable "ec2_ami_id" {
   description = "AMI ID for the EC2 app host."
   type        = string
-  default     = "ami-068c0051b15cdb816" # TODO
+  default     = "ami-0f85876b1aff99dde" # TODO
 }
 
 variable "ec2_instance_type" {
@@ -52,17 +52,17 @@ variable "ec2_instance_type" {
   default     = "t3.micro"
 }
 
-variable "db_engine" {
-  description = "RDS engine."
-  type        = string
-  default     = "mysql"
-}
+# variable "db_engine" {
+#   description = "RDS engine."
+#   type        = string
+#   default     = "mysql"
+# }
 
-variable "db_instance_class" {
-  description = "RDS instance class."
-  type        = string
-  default     = "db.t3.micro"
-}
+# variable "db_instance_class" {
+#   description = "RDS instance class."
+#   type        = string
+#   default     = "db.t3.micro"
+# }
 
 variable "db_name" {
   description = "Initial database name."
@@ -93,7 +93,7 @@ variable "sns_email_endpoint" {
 variable "domain_name" {
   description = "Base domain students registered (e.g., chewbacca-growl.com)."
   type        = string
-  default     = "jshivgru.click"
+  default     = "jshivbos.click"
 }
 
 variable "app_subdomain" {
@@ -181,9 +181,9 @@ variable "alb_access_logs_prefix" {
   }
 }
 
-### Lab 2a
+## Lab 2a
 variable "cloudfront_acm_cert_arn" {
-  description = "ACM certificate ARN in us-east-1 for CloudFront (covers jshivgru.click and app.jshivgru.click)."
+  description = "ACM certificate ARN in us-east-1 for CloudFront (covers jshivbos.click and app.jshivbos.click)."
   type        = string
   default     = ""
 }

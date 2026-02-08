@@ -1,4 +1,4 @@
-# 
+# # 
 
 ############################################
 # VPC Endpoint - S3 (Gateway)
@@ -19,9 +19,9 @@ resource "aws_vpc_endpoint" "gru_vpce_s3_gw01" {
   }
 }
 
-############################################
-# VPC Endpoints - SSM (Interface)
-############################################
+# ############################################
+# # VPC Endpoints - SSM (Interface)
+# ############################################
 
 # # Explanation: SSM is your Force choke—remote control without SSH, and nobody sees your keys.
 # resource "aws_vpc_endpoint" "gru_vpce_ssm01" {
@@ -68,12 +68,11 @@ resource "aws_vpc_endpoint" "gru_vpce_s3_gw01" {
 #   }
 # }
 
-
 ############################################
 # VPC Endpoint - CloudWatch Logs (Interface)
 ############################################
 
-# Explanation: CloudWatch Logs is the ship’s black box—bos wants crash data, always.
+# Explanation: CloudWatch Logs is the ship’s black box—gru wants crash data, always.
 resource "aws_vpc_endpoint" "gru_vpce_logs01" {
   vpc_id              = aws_vpc.gru_vpc01.id
   service_name        = "com.amazonaws.${data.aws_region.gru_region01.region}.logs"
@@ -88,23 +87,22 @@ resource "aws_vpc_endpoint" "gru_vpce_logs01" {
   }
 }
 
+# ############################################
+# # VPC Endpoint - Secrets Manager (Interface)
+# ############################################
 
-############################################
-# VPC Endpoint - Secrets Manager (Interface)
-############################################
-
-# Explanation: Secrets Manager is the locked vault—bos doesn’t put passwords on sticky notes.
-# resource "aws_vpc_endpoint" "bos_vpce_secrets01" {
-#   vpc_id              = aws_vpc.bos_vpc01.id
-#   service_name        = "com.amazonaws.${data.aws_region.bos_region01.region}.secretsmanager"
+# # Explanation: Secrets Manager is the locked vault—gru doesn’t put passwords on sticky notes.
+# resource "aws_vpc_endpoint" "gru_vpce_secrets01" {
+#   vpc_id              = aws_vpc.gru_vpc01.id
+#   service_name        = "com.amazonaws.${data.aws_region.gru_region01.region}.secretsmanager"
 #   vpc_endpoint_type   = "Interface"
 #   private_dns_enabled = true
 
-#   subnet_ids         = aws_subnet.bos_private_subnets[*].id
-#   security_group_ids = [aws_security_group.bos_vpce_sg01.id]
+#   subnet_ids         = aws_subnet.gru_private_subnets[*].id
+#   security_group_ids = [aws_security_group.gru_vpce_sg01.id]
 
 #   tags = {
-#     Name = "${local.bos_prefix}-vpce-secrets01"
+#     Name = "${local.gru_prefix}-vpce-secrets01"
 #   }
 # }
 
@@ -112,17 +110,17 @@ resource "aws_vpc_endpoint" "gru_vpce_logs01" {
 # # Optional: VPC Endpoint - KMS (Interface)
 # ############################################
 
-# # Explanation: KMS is the encryption kyber crystal—bos prefers locked doors AND locked safes.
-# resource "aws_vpc_endpoint" "bos_vpce_kms01" {
-#   vpc_id              = aws_vpc.bos_vpc01.id
-#   service_name        = "com.amazonaws.${data.aws_region.bos_region01.region}.kms"
+# # Explanation: KMS is the encryption kyber crystal—gru prefers locked doors AND locked safes.
+# resource "aws_vpc_endpoint" "gru_vpce_kms01" {
+#   vpc_id              = aws_vpc.gru_vpc01.id
+#   service_name        = "com.amazonaws.${data.aws_region.gru_region01.region}.kms"
 #   vpc_endpoint_type   = "Interface"
 #   private_dns_enabled = true
 
-#   subnet_ids         = aws_subnet.bos_private_subnets[*].id
-#   security_group_ids = [aws_security_group.bos_vpce_sg01.id]
+#   subnet_ids         = aws_subnet.gru_private_subnets[*].id
+#   security_group_ids = [aws_security_group.gru_vpce_sg01.id]
 
 #   tags = {
-#     Name = "${local.bos_prefix}-vpce-kms01"
+#     Name = "${local.gru_prefix}-vpce-kms01"
 #   }
 # }
